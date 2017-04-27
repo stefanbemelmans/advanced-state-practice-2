@@ -10,7 +10,7 @@ class App extends Component {
     };
   }
   render() {
-    const {carsForSale,vehicleData,allYears} = this .props;
+    const {carsForSale,vehicleData,allYears} = this.props.state;
 
     return (
       <div >
