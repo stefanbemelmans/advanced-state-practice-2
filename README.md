@@ -19,7 +19,7 @@
 * on change setState currentMake to e.target.value
 
 ### In App component
-* In the render method, filter the carsForSale array on the currentYear and currentMake
+* In the render method, filter the carsForSale array on the currentYear and currentMake state properties
 * If currentYear and currentMake are null or blank then don't filter
 * Instead of one hard coded CarListing component, map the the filtered array into a CarListing array
 * Provide the CarListing component with a prop called “car” which should be the object from each map loop
