@@ -11,7 +11,12 @@ class App extends Component {
   }
   render() {
     const {carsForSale,vehicleData,allYears} = this.props.state;
-
+    let filteredList;
+    if(this.state.currentMake && this.state.currentYear){
+      filteredList = this.state.carsForSale.filter(car =>{
+        return car.year === this.state.currentYear && car.make === this.state.currentMake;
+       }).map(x => <CarListing car={x} />)
+    }
     return (
       <div >
 <div className="switcher-wrapper">	
@@ -164,12 +169,9 @@ class App extends Component {
         </div>
         <div className="row">
 
-          {if(this.state.currentMake && this.state.currentYear === null){return}else{
-            let mappedList = this.state.props.state.carsForSale.filter(x => {
-              return x.year === this.state.currentYear && x.make ==== this.state.currentMake;
-            })
-          }}
-            <CarListing car={this.props.state.carsForSale[0]} />
+         
+            {/* <CarListing car={this.props.state.carsForSale[0]} /> */}
+            {filteredList}
         </div>
         <div className="pagination">
           <ul>
