@@ -22,7 +22,7 @@ function CarListing(props) {
                   <li><i className="fa fa-road" aria-hidden="true"></i>{props.car.km} km</li>
                   <li><i className="fa fa-tachometer" aria-hidden="true"></i>{props.car.miles} miles</li>
                   <li><i className="fa fa-calendar" aria-hidden="true"></i>{props.car.year} model</li>
-                  <li><i className="fa fa-car" aria-hidden="true"></i>{props.car.engine}</li>
+                  <li><i className="fa fa-car" aria-hidden="true"></i>{props.car.fuel}</li>
                 </ul>
               </div>
             </div>
