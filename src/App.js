@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import CarListing from "./components/CarListing";
 
 class App extends Component {
-  constructor() {
+  constructor(props) {
     super();
-    this. state = {
+    this.state = {
       currentYear:null,
       currentMake:null,
     };
@@ -163,7 +163,13 @@ class App extends Component {
           </div>
         </div>
         <div className="row">
-        <CarListing />
+
+          {if(this.state.currentMake && this.state.currentYear === null){return}else{
+            let mappedList = this.state.props.state.carsForSale.filter(x => {
+              return x.year === this.state.currentYear && x.make ==== this.state.currentMake;
+            })
+          }}
+            <CarListing car={this.props.state.carsForSale[0]} />
         </div>
         <div className="pagination">
           <ul>
@@ -184,8 +190,13 @@ class App extends Component {
           <div className="sidebar_filter">
             <form action="http://themes.webmasterdriver.net/carforyou/demo/listing-grid.html#" method="get">
               <div className="form-group select">
-                <select className="form-control">
+                <select className="form-control" onChange={e => this.setState({currentYear: e.target.value})}>
                   <option>Select Year</option>
+                  {this.props.state.allYears.map((x,i) => {
+                    return (
+                      <option key={i}>{x}</option>
+                    );
+                  })}
                   <option>2017</option>
                   <option>2016</option>
                   <option>2015</option>
