@@ -9,6 +9,16 @@ class App extends Component {
       currentMake:null,
     };
   }
+
+  filterCars() {
+    if(this.state.currentMake && this.state.currentYear){
+    this.state.carsForSale.filter(x => x.make === this.state.currentMake && x.year === this.state.currentYear ).map(car =>{
+      return (
+        <CarListing car={car} />
+      );
+    })
+  }
+  }
   render() {
     const {carsForSale,vehicleData,allYears} = this.props.state;
 
@@ -164,12 +174,8 @@ class App extends Component {
         </div>
         <div className="row">
 
-          {if(this.state.currentMake && this.state.currentYear === null){return}else{
-            let mappedList = this.state.props.state.carsForSale.filter(x => {
-              return x.year === this.state.currentYear && x.make ==== this.state.currentMake;
-            })
-          }}
-            <CarListing car={this.props.state.carsForSale[0]} />
+          {this.filterCars()}
+            {/* <CarListing car={this.props.state.carsForSale[0]} /> */}
         </div>
         <div className="pagination">
           <ul>
@@ -194,7 +200,7 @@ class App extends Component {
                   <option>Select Year</option>
                   {this.props.state.allYears.map((x,i) => {
                     return (
-                      <option key={i}>{x}</option>
+                      <option value={x} key={i}>{x}</option>
                     );
                   })}
                   <option>2017</option>
@@ -221,8 +227,13 @@ class App extends Component {
                 </select>
               </div>
               <div className="form-group select">
-                <select className="form-control">
+                <select className="form-control" onChange={e => this.setState({currentMake: e.target.value})}>
                   <option>Select Brand</option>
+                  {this.props.state.vehicleData.map((x,i) => {
+                    return (
+                      <option value={x.value} key={i}>{x.title}</option>
+                    );
+                  })}
                   <option>Audi</option>
                   <option>BMW</option>
                   <option>Nissan</option>
