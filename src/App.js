@@ -10,20 +10,11 @@ class App extends Component {
     };
   }
 
-  filterCars() {
-    if(this.state.currentMake && this.state.currentYear){
-    this.state.carsForSale.filter(x => x.make === this.state.currentMake && x.year === this.state.currentYear ).map(car =>{
-      return (
-        <CarListing car={car} />
-      );
-    })
-  }
-  }
   render() {
     const {carsForSale,vehicleData,allYears} = this.props.state;
     let filteredList;
     if(this.state.currentMake && this.state.currentYear){
-      filteredList = this.state.carsForSale.filter(car =>{
+      filteredList = this.props.state.carsForSale.filter(car =>{
         return car.year === this.state.currentYear && car.make === this.state.currentMake;
        }).map(x => <CarListing car={x} />)
     }
